@@ -317,14 +317,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The system should respond within two seconds
 5. The system should be usable by someone who's tech illiterate
-6. The system should work on both 32-bit and 54-bit environments
-7. The system should be backward compatible with data produced by earlier versions of the systems
-8. The system will need at least 100MB of disk space to run the application
-9. Teaching Assistant's Assistant should give constructive feedback for invalid command
-10. Teaching Assistant's Assistant should be able to work in an offline setting
-11. Teaching Assistant's Assistant is not required to print detailed report
-
-*{More to be added}*
+6. The system should work on both 32-bit and 64-bit environments
+7. The system will need at least 100MB of disk space to run the application
+8. Teaching Assistant's Assistant should give constructive feedback for invalid command
+9. Teaching Assistant's Assistant should be able to work in an offline setting
 
 ### Glossary
 
