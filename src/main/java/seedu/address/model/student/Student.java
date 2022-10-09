@@ -61,7 +61,9 @@ public class Student {
         return email;
     }
 
-    public TutorialGroup getTutorialGroup() { return tutorialGroup; }
+    public TutorialGroup getTutorialGroup() {
+        return tutorialGroup;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
