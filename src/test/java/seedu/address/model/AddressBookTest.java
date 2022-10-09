@@ -100,7 +100,9 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<TutorialGroup> getTutorialGroupList() { return tutorialGroups; }
+        public ObservableList<TutorialGroup> getTutorialGroupList() {
+            return tutorialGroups;
+        }
     }
 
 }
