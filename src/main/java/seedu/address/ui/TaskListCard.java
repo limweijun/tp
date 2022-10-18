@@ -68,6 +68,9 @@ public class TaskListCard extends UiPart<Region> {
                 && task.equals(card.task);
     }
 
+    /**
+     * Toggles the task list card by expanding or minimizing.
+     */
     @FXML
     public void onCardClicked() {
         isToggle = !isToggle;
