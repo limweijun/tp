@@ -195,7 +195,51 @@ Step 7. The `sort` method then iterate the object of type `ObservableList<Task>`
     - Pros: User has a choice whether they want their list to be sorted.
     - Cons: More classes to implement e.g. taskSortCommand.java and taskSortCommandParser.java.
 
-_{more aspects and alternatives to be added}_
+### Tutorial group feature
+
+#### Implementation
+
+The tutorial group feature is facilitated by `TutorialGroup`. It implements the following operations:
+
+- `TutorialGroup#TutorialGroup(String)` — Create a tutorial group with the name provided. The name must follow a format of "TXX".
+- `TutorialGroup#isSameTutorialGroup()` — Check whether the two tutorial groups have the same name.
+- `TutorialGroup#getStudents()` — Gets a list of students belong to this tutorial group.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. 
+
+Step 2. The user executes `tutorialList` command to display all the tutorial groups.
+
+Step 3. The user executes `tutorialAdd g/T03` command to add a new tutorial group.
+
+Step 4. The user executes `studentEdit 1 g/T03` command to assign the first student to the newly created tutorial group.
+
+### Expanding `TaskListCard` Feature
+
+#### Description
+
+In TAA, the user can specify which `Student`s a `Task` has to be completed for. In the UI, each `Task` is displayed as a `TaskListCard`. The `TaskListCard` can be clicked to show or hide the `Student`s.
+
+#### Implementation
+
+Every `TaskListCard` contains:
+* a `VBox optionalInfo` UI component which displays the students' names to the user,
+* a `boolean isExpanded` attribute to determine whether to show the `optionalInfo`, and
+* a `void onCardClicked()` method to toggle `isExpanded`.
+
+#### Design Considerations
+
+If a `Task` has no `Student`s,
+* clicking on its `TaskListCard` does nothing, and
+* `"No students are assigned to this task."` is displayed to the user.
+
+#### Alternative Designs Considered
+
+1. **Always show the students for all tasks.** This is rejected because tutorial groups contain many students. This allows very few tasks to be displayed on the UI at one time. This prevents the user from having an at-a-glance view of their tasks.
+2. **Display the students for a task in a pop-up dialog box.** This is rejected because we wish to minimise the number of mouse clicks needed to switch from viewing the students under Task 1 to viewing the students under Task 2.
+    * In the current design, the user only needs to click once on Task 2 to collapse Task 1 and expand Task 2.
+    * This alternative design requires the user to click on the **Close** button on Task 1's dialog box, and then click again on Task 2.
 
 ### \[Proposed\] Undo/redo feature
 
