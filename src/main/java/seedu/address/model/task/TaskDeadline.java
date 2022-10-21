@@ -15,7 +15,7 @@ import java.util.Date;
 public class TaskDeadline {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadline should be in the format of dd/MM/yyyy";
+            "Deadline should be in the format of DD/MM/YYYY";
     public static final String MESSAGE_INVALID_DATE =
             "Either the day or month or both is out of range";
     public static final String VALIDATION_REGEX = "[0-9]{2}/[0-9]{2}/[0-9]{4}";
