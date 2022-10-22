@@ -104,7 +104,6 @@ public class TaskEditCommand extends Command {
         TaskDeadline updatedTaskDeadline = editStudentDescriptor.getTaskDeadline().orElse(taskToEdit.getTaskDeadline());
 
         Set<Student> students = new HashSet<>();
-        System.out.println(editStudentDescriptor.getStudentNames());
         if (editStudentDescriptor.getStudentNames() != null) {
             for (String studentName : editStudentDescriptor.getStudentNames()) {
                 if (isNull(model.findStudent(studentName))) {
