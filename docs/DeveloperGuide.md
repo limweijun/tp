@@ -195,7 +195,124 @@ Step 7. The `sort` method then iterate the object of type `ObservableList<Task>`
     - Pros: User has a choice whether they want their list to be sorted.
     - Cons: More classes to implement e.g. taskSortCommand.java and taskSortCommandParser.java.
 
-_{more aspects and alternatives to be added}_
+### Tutorial group feature
+
+#### Implementation
+
+The tutorial group feature is facilitated by `TutorialGroup`. It implements the following operations:
+
+- `TutorialGroup#TutorialGroup(String)` — Create a tutorial group with the name provided. The name must follow a format of "TXX".
+- `TutorialGroup#isSameTutorialGroup()` — Check whether the two tutorial groups have the same name.
+- `TutorialGroup#getStudents()` — Gets a list of students belong to this tutorial group.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. 
+
+Step 2. The user executes `tutorialList` command to display all the tutorial groups.
+
+Step 3. The user executes `tutorialAdd g/T03` command to add a new tutorial group.
+
+Step 4. The user executes `studentEdit 1 g/T03` command to assign the first student to the newly created tutorial group.
+
+### Task feature
+
+#### Description
+
+The task features is an extension on AB3 to add a list of tasks to the `Model` that we then use to track different
+tasks that the user has to complete.
+
+#### Implementation
+
+The task feature is facilitated by `Task`. It implements the following operations:
+* Adding Tasks using a Name, Description, Deadline and assigned students (Optional)
+* Deleting Tasks using the Task's index
+* Editing Tasks using the Task's index
+* Marking Tasks as done using the Task's index (In Progress)
+* Viewing Tasks
+
+#### Design Considerations
+
+The implementation is quite similar to what was done for the base AB3, as well as
+the tutorial group and student feature. However, there were a few differences in the
+implementation that we had to take note of.
+
+The main issue comes with the ability to edit tasks. In `TutorialGroup` and `Student`,
+the implementation of the edit command was quite simple, which was to have a class to store all the changes
+and merge them with the states in the `Model`. However, in `Task`, the implementation was a bit more complex,
+as we had to take into account the students assigned to the task. We couldn't create new Students and then edit
+the task, since the students would be new and not in the `Model` yet. Thus, we had to use a different method,
+instead opting to defer the creation of the new `Task` to the `Model` itself. This was done by rewriting the
+code to parse in all the fields of `Task` and leaving student as a list of Strings, which we then use to search through
+the `Model` to find the students that are assigned to the task.
+
+### Mass Actions feature
+
+#### Description
+The idea behind Mass Actions is to be able to chain together multiple commands without having to type them out one 
+by one. This is useful for when the user wants to perform the same action on multiple students or tutorial groups.
+
+#### Implementation
+The mass actions feature requires a rework of the parsers, particularly StudentDeleteCommandParser 
+and TaskDeleteCommandParser. Instead of parsing a single index, the parsers will parse a range of indices,
+then loop through each index, getting the task before deleting it.
+
+#### Design Considerations
+The implementation is different from the original AB3 implementation, as there were some special considerations
+to keep in mind. The key issue was that we had to do two separate loops, one for getting the list of tasks/students
+to delete, before then proceeding to delete them. This is because if we attempt to do it in a single loop, we 
+encounter an error where the list of tasks/students is modified while we are iterating through it.
+
+#### Alternative Considerations
+Another way of doing this instead of completely reworking the commands would be to overload the constructor,
+however, it seemingly would not be as clean as the current implementation, as the current implementation is able
+to handle one or more indices, while the alternative implementation would be doing double work to cover the case with
+one index.
+
+### Expanding `TaskListCard` Feature
+
+#### Description
+
+In TAA, the user can specify which `Student`s a `Task` has to be completed for. In the UI, each `Task` is displayed as a `TaskListCard`. The `TaskListCard` can be clicked to show or hide the `Student`s.
+
+#### Implementation
+
+Every `TaskListCard` contains:
+* a `VBox optionalInfo` UI component which displays the students' names to the user,
+* a `boolean isExpanded` attribute to determine whether to show the `optionalInfo`, and
+* a `void onCardClicked()` method to toggle `isExpanded`.
+
+#### Design Considerations
+
+If a `Task` has no `Student`s,
+* clicking on its `TaskListCard` does nothing, and
+* `"No students are assigned to this task."` is displayed to the user.
+
+#### Alternative Designs Considered
+
+1. **Always show the students for all tasks.** This is rejected because tutorial groups contain many students. This allows very few tasks to be displayed on the UI at one time. This prevents the user from having an at-a-glance view of their tasks.
+2. **Display the students for a task in a pop-up dialog box.** This is rejected because we wish to minimise the number of mouse clicks needed to switch from viewing the students under Task 1 to viewing the students under Task 2.
+    * In the current design, the user only needs to click once on Task 2 to collapse Task 1 and expand Task 2.
+    * This alternative design requires the user to click on the **Close** button on Task 1's dialog box, and then click again on Task 2.
+
+### \[In progress\] Grade feature
+
+#### Description
+
+In TAA, the user can specify whether they have graded a `Student`s `Task` or not.
+
+#### Implementation
+
+Every `Grade` contains:
+* the `Student` it is associated with
+* the `Task` it is associated with, and
+* the `GradeState`, the state of the graded (graded or not).
+
+#### Design Considerations
+
+* In the interest of future extensibility, the `Grade` was made modular through the `GradeState` class.
+    * While for now only two grade states are supported ("graded" or "not graded"), in the future, more states can easily be added.
+    * This wouldn't have been possible if `GradeState` was simply a `boolean` value.
 
 ### \[Proposed\] Undo/redo feature
 
