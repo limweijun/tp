@@ -62,9 +62,9 @@ public class StudentAddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + TUTORIAL_GROUP_DESC_BOB + TAG_DESC_FRIEND, new StudentAddCommand(expectedStudent));
 
-        // multiple addresses - last address accepted
+        // multiple tutorial groups - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_FRIEND
-                + TUTORIAL_GROUP_DESC_BOB,
+                + TUTORIAL_GROUP_DESC_BOB + TUTORIAL_GROUP_DESC_AMY,
                 new StudentAddCommand(expectedStudent));
 
         // multiple tags - all accepted
@@ -78,7 +78,7 @@ public class StudentAddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Student expectedStudent = new StudentBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + TUTORIAL_GROUP_DESC_AMY,
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY,
                 new StudentAddCommand(expectedStudent));
     }
 
