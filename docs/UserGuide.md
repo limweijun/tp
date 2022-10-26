@@ -49,7 +49,7 @@ Notes:
 - Removes the student from the list of students with the given index
 
 Notes:
-- `index` must be a positive integer and valid
+- `index` must be a positive integer and must correspond to an existing student
 
 ### Edit students : 
 
