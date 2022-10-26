@@ -57,7 +57,7 @@ Notes:
 - Edits the student by its given index with at least 1 variable specified to change.
 
 Notes:
-- `index` must be a positive integer and valid
+- `index` must be a positive integer and must correspond to an existing student
 
 ### List students : 
 
