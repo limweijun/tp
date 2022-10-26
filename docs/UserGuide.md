@@ -80,7 +80,7 @@ Notes:
 ### Remove task : 
 
 - Command `task delete <index>`
-- Removes the named task from the list of tasks
+- Removes the indexed task from the list of tasks
 
 Notes:
 - `index` must be a positive integer and valid
