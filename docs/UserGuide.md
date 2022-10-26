@@ -75,7 +75,7 @@ Notes:
 - `taskName` should only contain alphanumeric characters and spaces, and it should not be blank
 - `taskDescription` should not be blank
 - `taskDeadline` should be in the format of DD/MM/YYYY with its days and months within range
-- `student(s)` should exist
+- `student(s)`, referenced by their name, should exist
 
 ### Remove task : 
 
