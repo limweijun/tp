@@ -142,7 +142,7 @@ Notes:
 
 ### Display user guide url :
 
-- Command `help`
+- Command `help me`
 - Shows a popup with the user guide url in it
 
 ### Exit the app :
