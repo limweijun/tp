@@ -109,6 +109,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteStudent(Student target) {
         addressBook.removeStudent(target);
+        addressBook.deleteStudentInTask(this, target);
     }
 
     @Override
@@ -127,6 +128,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedStudent);
 
         addressBook.setStudent(target, editedStudent);
+        addressBook.editStudentInTask(this, target, editedStudent);
     }
 
     @Override

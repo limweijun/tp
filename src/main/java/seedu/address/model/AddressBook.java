@@ -1,8 +1,12 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
@@ -59,6 +63,52 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setStudents(List<Student> students) {
         this.students.setStudents(students);
+    }
+
+    /**
+     * Edit the student list in the task.
+     */
+    public void editStudentInTask(Model model, Student oldStudent, Student newStudent) {
+        for (Task taskToEdit : tasks) {
+            if (taskToEdit.getStudents() != null) {
+                Set<Student> studentSet = taskToEdit.getStudents();
+                Set<Student> newStudents = new HashSet<>();
+                for (Student stud: studentSet) {
+                    Student student;
+                    if (Objects.equals(stud.getName(), oldStudent.getName())) {
+                        student = newStudent;
+                    } else {
+                        student = stud;
+                    }
+                    newStudents.add(student);
+                }
+                Task editedTask = new Task(taskToEdit.getTaskName(), taskToEdit.getTaskDescription(),
+                        taskToEdit.getTaskDeadline(), newStudents);
+                model.setTask(taskToEdit, editedTask);
+                model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+            }
+        }
+    }
+
+    /**
+     * Delete the student list in the task.
+     */
+    public void deleteStudentInTask(Model model, Student student) {
+        for (Task taskToEdit : tasks) {
+            if (taskToEdit.getStudents() != null) {
+                Set<Student> studentSet = taskToEdit.getStudents();
+                Set<Student> newStudents = new HashSet<>();
+                for (Student stud: studentSet) {
+                    if (!Objects.equals(stud.getName(), student.getName())) {
+                        newStudents.add(stud);
+                    }
+                }
+                Task editedTask = new Task(taskToEdit.getTaskName(), taskToEdit.getTaskDescription(),
+                        taskToEdit.getTaskDeadline(), newStudents);
+                model.setTask(taskToEdit, editedTask);
+                model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+            }
+        }
     }
 
     /**
