@@ -239,6 +239,9 @@ The task feature is facilitated by `Task`. It implements the following operation
 * Marking Tasks as done using the Task's index (In Progress)
 * Viewing Tasks
 
+Below is the class diagram for Task.
+<img src="diagrams/TaskClassDiagram.png" width="650" />
+
 #### Design Considerations
 
 The implementation is quite similar to what was done for the base AB3, as well as
