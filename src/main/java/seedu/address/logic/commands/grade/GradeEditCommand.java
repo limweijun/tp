@@ -106,8 +106,7 @@ public class GradeEditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the grade with. The non-empty field value will replace the
-     * field value of the grade.
+     * Stores the details to edit the grade with.
      */
     public static class EditGradeDescriptor {
         private Grade grade;
