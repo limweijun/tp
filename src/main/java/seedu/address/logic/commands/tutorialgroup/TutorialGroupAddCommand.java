@@ -25,7 +25,7 @@ public class TutorialGroupAddCommand extends Command {
     private final TutorialGroup toAdd;
 
     /**
-     * Creates an TaskAddCommand to add the specified {@code Person}
+     * Creates an TutorialGroupAddCommand to add the specified {@code TutorialGroup}
      */
     public TutorialGroupAddCommand(TutorialGroup tutorialGroup) {
         requireNonNull(tutorialGroup);

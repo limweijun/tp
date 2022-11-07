@@ -76,8 +76,8 @@ public class GradeEditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Grade} with the details of {@code student} and {@code task}
+     * edited with {@code editGradeDescriptor}.
      */
     private static Grade createEditedGrade(Student student, Task task, EditGradeDescriptor editGradeDescriptor) {
         assert student != null;
@@ -106,8 +106,8 @@ public class GradeEditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the grade with. The non-empty field value will replace the
+     * field value of the grade.
      */
     public static class EditGradeDescriptor {
         private Grade grade;
@@ -116,7 +116,7 @@ public class GradeEditCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code grade} is used internally.
          */
         public EditGradeDescriptor(EditGradeDescriptor toCopy) {
             setGrade(toCopy.grade);
