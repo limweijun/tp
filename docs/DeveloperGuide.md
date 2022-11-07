@@ -189,7 +189,7 @@ Step 6. The `sort` method takes in an object of type Comparator which compares t
 Step 7. The `sort` method then iterate the object of type `ObservableList<Task>` and arrange them according to their deadline in ascending order.
 
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario during task sort when a user adds a new task.
-<img src="diagrams/SortTask.png" width="550"/>
+<img src="images/SortTask.png" width="550"/>
 #### Design considerations:
 
 **Aspect: How sorting task by deadline executes:**
@@ -240,7 +240,7 @@ The task feature is facilitated by `Task`. It implements the following operation
 * Viewing Tasks
 
 Below is the class diagram for Task.
-<img src="diagrams/TaskClassDiagram.png" width="650" />
+<img src="images/TaskClassDiagram.png" width="650" />
 
 #### Design Considerations
 
@@ -311,7 +311,7 @@ If a `Task` has no `Student`s,
     * This alternative design requires the user to click on the **Close** button on Task 1's dialog box, and then click again on Task 2.
 
 Here's an activity diagram to demonstrate the Expanding TaskListCard feature.
-<img src="images/TaskExpandActivityDiagram.png" width="550"/>
+<img src="images/TaskExpandActivityDiagram.png" width="350"/>
 
 ### Grade feature
 
