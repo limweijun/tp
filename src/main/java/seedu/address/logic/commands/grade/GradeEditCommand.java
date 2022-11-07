@@ -26,7 +26,7 @@ public class GradeEditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the grade of the student's task "
             + "by the index number used in the displayed student list and task list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: STUDENT_INDEX TASK_INDEX (must be positive integers)"
+            + "Parameters: STUDENT_INDEX TASK_INDEX (must be positive integers and NOT TOO BIG)"
             + "[" + PREFIX_GRADE + "GRADE (T or F)]...\n"
             + "Example: " + COMMAND_WORD + " 1 2 "
             + PREFIX_GRADE + "T";
@@ -62,11 +62,9 @@ public class GradeEditCommand extends Command {
         } else if (taskIndex.getZeroBased() >= lastShownTaskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
-
-        // TODO check if student is in task
         Student studentGradeToEdit = lastShownStudentList.get(studentIndex.getZeroBased());
         Task taskGradeToEdit = lastShownTaskList.get(taskIndex.getZeroBased());
-        if (!taskGradeToEdit.getStudents().contains(studentGradeToEdit)) {
+        if (!taskGradeToEdit.hasStudent(studentGradeToEdit)) {
             throw new CommandException(MESSAGE_STUDENT_TASK_PAIR_NOT_FOUND);
         }
         Grade editedGrade = createEditedGrade(studentGradeToEdit, taskGradeToEdit, editGradeDescriptor);
@@ -78,8 +76,8 @@ public class GradeEditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Grade} with the details of {@code student} and {@code task}
+     * edited with {@code editGradeDescriptor}.
      */
     private static Grade createEditedGrade(Student student, Task task, EditGradeDescriptor editGradeDescriptor) {
         assert student != null;
@@ -108,8 +106,7 @@ public class GradeEditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the grade with.
      */
     public static class EditGradeDescriptor {
         private Grade grade;
@@ -118,7 +115,7 @@ public class GradeEditCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code grade} is used internally.
          */
         public EditGradeDescriptor(EditGradeDescriptor toCopy) {
             setGrade(toCopy.grade);

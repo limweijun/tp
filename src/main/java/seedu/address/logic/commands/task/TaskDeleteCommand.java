@@ -15,7 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a task identified using it's displayed index from the address book.
  */
 public class TaskDeleteCommand extends Command {
 
@@ -24,7 +24,7 @@ public class TaskDeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the task identified by the index numbers (seperated by whitespace)"
             + " used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive integer and NOT TOO BIG)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";

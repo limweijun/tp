@@ -24,20 +24,20 @@ import seedu.address.model.tag.Tag;
 
 
 /**
- * Adds a tutorial group to the address book.
+ * Deletes a tutorial group from the address book.
  */
 public class TutorialGroupDeleteCommand extends Command {
     public static final String COMMAND_WORD = "tutorial delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a tutorial group from the address book. "
-        + "Parameters: index of the tutorial group";
+        + "Parameters: index of the tutorial group (must be positive and NOT TOO BIG)";
 
     public static final String MESSAGE_DELETE_TUTORIAL_GROUP_SUCCESS = "This tutorial group deleted: %1$s";
 
     private Index targetIndex;
 
     /**
-     * Creates an TaskAddCommand to add the specified {@code Person}
+     * Creates an TutorialGroupDeleteCommand to add the specified {@code Index}
      */
     public TutorialGroupDeleteCommand(Index index) {
         targetIndex = index;
@@ -98,8 +98,8 @@ public class TutorialGroupDeleteCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Student} with the details of {@code studentToEdit}
+     * edited with {@code editStudentDescriptor}.
      */
     private static Student createEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
         assert studentToEdit != null;
